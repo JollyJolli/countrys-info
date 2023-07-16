@@ -1,7 +1,24 @@
-const { getCountryInfo } = require('./index');
+const { getCountryInfo, getContinent } = require('./index');
 
-const capitalEn = getCountryInfo('China', 'capital_en');
-console.log(capitalEn);
 
-const countryFields = getCountryInfo('China', ['capital_en', 'code_2', 'tld']);
-console.log(countryFields);
+// Ejemplo de uso de getCountryInfo
+try {
+    const countryName = 'Spain';
+    const fields = ['capital_en', 'code_2', 'tld'];
+  
+    const countryInfo = getCountryInfo(countryName, fields);
+    console.log(countryInfo);
+  } catch (error) {
+    console.error(error.message);
+  }
+  
+  // Ejemplo de uso de getContinent
+  try {
+    const continentName = 'Europe';
+    const fields = ['name_en', 'code_2', 'capital_en'];
+  
+    const continentInfo = getContinent(continentName, fields);
+    console.log(continentInfo);
+  } catch (error) {
+    console.error(error.message);
+  }

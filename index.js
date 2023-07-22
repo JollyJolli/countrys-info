@@ -1,5 +1,6 @@
 const packageJson = require('./package.json');
 const countries = require('./countries.json');
+const { default: updateNotifier } = require('update-notifier');
 
 // Create a map (Map) to index the country information
 const countryMap = new Map();
@@ -218,8 +219,6 @@ function searchCountries(keyword, fields) {
 }
 
 (async () => {
-  const { default: updateNotifier } = await import('update-notifier');
-
   // Configure the notification options
   const notifier = updateNotifier({
     pkg: packageJson,

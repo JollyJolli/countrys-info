@@ -1,6 +1,6 @@
 {
   "name": "countrys-info",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "description": "A package for getting countrys information (in spanish and english)",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JollyJolli/countrys-information.git"
+    "url": "git+https://github.com/JollyJolli/countrys-info.git"
   },
   "author": "Jolly",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JollyJolli/countrys-information/issues"
+    "url": "https://github.com/JollyJolli/countrys-info/issues"
   },
-  "homepage": "https://github.com/JollyJolli/countrys-information#readme",
+  "homepage": "https://github.com/JollyJolli/countrys-info#readme",
   "keywords": [
     "countries",
     "country information",

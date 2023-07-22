@@ -120,9 +120,17 @@ Returns an array of objects containing information about the countries matching 
 - km2: Total land area of the country in square kilometers.
 
 # Changelog
+## Version 3.1.2
+- New Feature: Added automatic update check on application start.
+
+## Version 3.1.1
+- Bug fixed on **searchCountries**
+- Github renamed
+
+
 ## Version 3.1.0
 - Added changelog
-- Improved documentation in the README.md.
+- Improved documentation in the README.md
 
 ## Version 3.0.0
 - Added getCountryByCode function to find countries by their ISO codes.

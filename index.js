@@ -108,6 +108,115 @@ function getContinent(continentName, fields) {
   return continentData;
 }
 
+function getAllCountries(fields) {
+  const countryData = countries.countries.map(country => {
+    const data = {};
+    fields.forEach(field => {
+      if (country[field]) {
+        data[field] = country[field];
+      }
+    });
+    return data;
+  });
+
+  return countryData;
+}
+
+function getCountryByCode(countryCode, fields) {
+  const key = countryCode.toUpperCase();
+  const countryInfo = countryMap.get(key);
+
+  if (!countryInfo) {
+    throw new Error('Country not found.');
+  }
+
+  if (!fields) {
+    // If no specific fields are provided, return all available data
+    return Object.values(countryInfo);
+  }
+
+  if (typeof fields === 'string') {
+    // If a single field is requested, return that specific field value
+    return countryInfo[fields] || null;
+  }
+
+  if (!Array.isArray(fields)) {
+    throw new Error('Fields must be a string or an array of strings.');
+  }
+
+  const countryData = [];
+  for (const field of fields) {
+    if (typeof field !== 'string') {
+      throw new Error('Field names must be strings.');
+    }
+
+    if (countryInfo[field]) {
+      countryData.push(countryInfo[field]);
+    }
+  }
+  return countryData;
+}
+
+function getCountryByTLD(topLevelDomain, fields) {
+  const countryInfo = countries.countries.find(country => country.tld === topLevelDomain);
+
+  if (!countryInfo) {
+    throw new Error('Country not found.');
+  }
+
+  if (!fields) {
+    // If no specific fields are provided, return all available data
+    return Object.values(countryInfo);
+  }
+
+  if (typeof fields === 'string') {
+    // If a single field is requested, return that specific field value
+    return countryInfo[fields] || null;
+  }
+
+  if (!Array.isArray(fields)) {
+    throw new Error('Fields must be a string or an array of strings.');
+  }
+
+  const countryData = [];
+  for (const field of fields) {
+    if (typeof field !== 'string') {
+      throw new Error('Field names must be strings.');
+    }
+
+    if (countryInfo[field]) {
+      countryData.push(countryInfo[field]);
+    }
+  }
+  return countryData;
+}
+
+function searchCountries(keyword, fields) {
+  const matchingCountries = countries.countries.filter(country => {
+    const lowercaseKeyword = keyword.toLowerCase();
+    return (
+      country.name_en.toLowerCase().includes(lowercaseKeyword) ||
+      country.name_es.toLowerCase().includes(lowercaseKeyword) ||
+      country.capital_en.toLowerCase().includes(lowercaseKeyword) ||
+      country.capital_es.toLowerCase().includes(lowercaseKeyword) ||
+      country.code_2.toLowerCase().includes(lowercaseKeyword) ||
+      country.code_3.toLowerCase().includes(lowercaseKeyword)
+    );
+  });
+
+  const countryData = matchingCountries.map(country => {
+    const data = {};
+    fields.forEach(field => {
+      if (country[field]) {
+        data[field] = country[field];
+      }
+    });
+    return data;
+  });
+
+  return countryData;
+}
+
 (async () => {
   const { default: updateNotifier } = await import('update-notifier');
 
@@ -125,5 +234,9 @@ function getContinent(continentName, fields) {
 
 module.exports = {
   getCountryInfo,
-  getContinent
+  getContinent,
+  getAllCountries,
+  getCountryByCode,
+  getCountryByTLD,
+  searchCountries
 };

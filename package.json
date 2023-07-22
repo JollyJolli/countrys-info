@@ -1,6 +1,6 @@
 {
   "name": "countrys-info",
-  "version": "1.5.0",
+  "version": "3.1.0",
   "description": "A package for getting countrys information (in spanish and english)",
   "main": "index.js",
   "scripts": {
